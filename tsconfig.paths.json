@@ -1,0 +1,12 @@
+{
+   "compilerOptions": {
+      "baseUrl": ".",
+      "paths": {
+         "@/*": ["./src/*"],
+         "Types/*": ["./src/types/*"],
+         "@recipe-data/*": ["./src/features/recipe-data/*"],
+         "Styles/*": ["./src/assets/styles/*"],
+         "Assets/*": ["./src/assets/*"],
+      }
+   }
+}

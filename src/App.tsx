@@ -1,26 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import './assets/styles/App.css'
+import CategoryTable from './features/recipe-data/components/CategoryTable'
+import IngredientsTable from './features/recipe-data/components/IngredientsTable'
+import { useRecipeData } from './features/recipe-data/hooks'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+   const recipeData = useRecipeData()
+
+   console.log(recipeData)
+
+   return (
+      <div className="App">
+         {/* <IngredientsTable /> */}
+         <CategoryTable />
+      </div>
+   )
 }
 
-export default App;
+export default App
