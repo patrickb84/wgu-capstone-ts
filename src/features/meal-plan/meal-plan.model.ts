@@ -99,6 +99,7 @@ export interface ShoppingListIngredientMeta {
    recipeIngredientMeasure: string | undefined
    mealDate: Date
 }
+
 interface ShoppingListItem extends Ingredient {
    name: string
    recipesMeta: ShoppingListIngredientMeta[]
