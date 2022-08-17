@@ -1,5 +1,5 @@
 import axios from 'axios'
-import RequestConfig from '@/types/RequestConfig'
+import { RequestConfig } from '@/types/RequestConfig'
 
 export default async function request(config: RequestConfig) {
    try {

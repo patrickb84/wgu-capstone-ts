@@ -10,7 +10,7 @@ export interface ITableProps {
 export function Table({ columns, children }: ITableProps) {
    return (
       <>
-         <table>
+         <table className='table'>
             <thead>
                <tr>
                   {columns.map(column => (

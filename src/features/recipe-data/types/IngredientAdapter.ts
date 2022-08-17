@@ -1,18 +1,19 @@
-import IIngredient from 'Types/Ingredient'
+import { Ingredient } from 'Types/Ingredient'
 
-export default class Ingredient implements IIngredient {
-   // private _ingredient: ApiIngredient
-   id: number
+export class IngredientAdapter implements Ingredient {
+   id: string
    name: string
    description: string | undefined
    type: string | undefined
 
-   constructor(adaptee: ApiIngredient) {
-      // this._ingredient = adaptee
-      this.id = parseInt(adaptee.idIngredient)
-      this.name = adaptee.strIngredient
-      this.description = adaptee.strDescription
-      this.type = adaptee.strType
+   constructor(apiIngredient: ApiIngredient) {
+      const { idIngredient, strIngredient, strDescription, strType } =
+         apiIngredient
+
+      this.id = idIngredient
+      this.name = strIngredient
+      this.description = strDescription
+      this.type = strType
    }
 }
 

@@ -1,10 +1,13 @@
-import Ingredient, { ApiIngredient } from './../types/IngredientAdapter'
-import Category, { ApiCategory } from './../types/CategoryAdapter'
+import { IngredientAdapter, ApiIngredient } from './../types/IngredientAdapter'
+import {
+   CategoryAdapter,
+   ApiCategory
+} from '../types/CategoryAdapter'
 import request from './request'
 import { headers } from './headers'
-import Area, { ApiArea } from '../types/AreaAdapter'
-import RequestConfig from '@/types/RequestConfig'
-import Recipe from '../types/RecipeAdapter'
+import { RequestConfig } from '@/types/RequestConfig'
+import { RecipeAdapter } from '../types/RecipeAdapter'
+import { Recipe } from '@/types/Recipe'
 
 export const fetchCategories = async () => {
    const data = await request({
@@ -12,7 +15,9 @@ export const fetchCategories = async () => {
       url: 'https://themealdb.p.rapidapi.com/categories.php',
       headers
    })
-   return data.categories.map((category: ApiCategory) => new Category(category))
+   return data.categories.map(
+      (category: ApiCategory) => new CategoryAdapter(category)
+   )
 }
 
 export const fetchAreas = async () => {
@@ -22,7 +27,7 @@ export const fetchAreas = async () => {
       params: { a: 'list' },
       headers
    })
-   return data.meals.map((area: ApiArea) => new Area(area))
+   return data.meals.map((area: string) => area)
 }
 
 export const fetchIngredients = async () => {
@@ -33,7 +38,7 @@ export const fetchIngredients = async () => {
       headers
    })
    return data.meals.map(
-      (ingredient: ApiIngredient) => new Ingredient(ingredient)
+      (ingredient: ApiIngredient) => new IngredientAdapter(ingredient)
    )
 }
 
@@ -43,6 +48,16 @@ export const fetchRandom10Recipes = async () =>
       url: 'https://themealdb.p.rapidapi.com/randomselection.php',
       headers
    })
+
+export const fetchRandomRecipe = async () => {
+   const data = await request({
+      method: 'GET',
+      url: 'https://themealdb.p.rapidapi.com/random.php',
+      headers
+   })
+   const recipe: Recipe = await RecipeAdapter.Init(data.meals[0])
+   return recipe
+}
 
 export const fetchLatestRecipes = async () =>
    await request({
@@ -62,7 +77,7 @@ export const fetchRecipe = async (id: string | number) => {
    // const ingredients = Recipe.parseIngredients(d)
    // const lookup = await Recipe.lookupIngredients(d)
    // console.warn({ lookup })
-   const rec = await Recipe.withIngredients(d)
+   const rec = await RecipeAdapter.Init(d)
    console.warn({ rec })
    return rec
    // return new Recipe(d, ingredients)
@@ -76,7 +91,9 @@ export const filterRecipes = async (params: any) => {
       headers
    }
    const data = await request(filterConfig)
-   return data.meals.map((recipe: any) => new Recipe(recipe, []))
+   return data.meals.map((recipe: any) =>
+      new RecipeAdapter(recipe).lookupIngredients()
+   )
 }
 
 export const filterByIngredients = async (ingredients: string) =>

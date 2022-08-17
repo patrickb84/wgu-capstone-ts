@@ -36,7 +36,7 @@ export default function CategoryTable() {
                               )
                               console.log('🚀 ~ onClick={ ~ details0', details0)
                               console.warn(
-                                 details0.ingredients.map(i =>
+                                 details0.ingredients.map((i: any) =>
                                     lookupIngredient(i.name)
                                  )
                               )

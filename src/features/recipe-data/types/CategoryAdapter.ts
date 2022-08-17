@@ -1,14 +1,12 @@
-import ICategory from "@/types/Category"
+import { Category } from 'Types/Category'
 
-export default class Category implements ICategory {
+export class CategoryAdapter implements Category {
    id: number
    label: string
    description?: string
    image?: string
-   private _apiCategory: ApiCategory
 
    constructor(apiCategory: ApiCategory) {
-      this._apiCategory = apiCategory
       this.id = parseInt(apiCategory.idCategory)
       this.label = apiCategory.strCategory
       this.description = apiCategory.strCategoryDescription

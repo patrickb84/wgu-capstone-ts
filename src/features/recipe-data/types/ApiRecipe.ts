@@ -1,4 +1,4 @@
-export default interface IApiRecipe {
+export interface ApiRecipe {
    dateModified?: string
    idMeal?: string
    strArea?: string

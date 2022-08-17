@@ -1,4 +1,4 @@
-declare interface RequestConfig {
+export interface RequestConfig {
    method: string
    headers: {
       [key: string]: string
@@ -6,4 +6,3 @@ declare interface RequestConfig {
    url: string
    params?: any
 }
-export default RequestConfig

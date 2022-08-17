@@ -4,12 +4,15 @@ import './assets/styles/index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 import { RecipeDataProvider } from './features/recipe-data/provider'
+import { MealPlanProvider } from './features/meal-plan/meal-plan.state'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
    <React.StrictMode>
       <RecipeDataProvider>
-         <App />
+         <MealPlanProvider>
+            <App />
+         </MealPlanProvider>
       </RecipeDataProvider>
    </React.StrictMode>
 )

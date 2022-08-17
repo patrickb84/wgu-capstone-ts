@@ -1,13 +1,13 @@
-import ICategory from '@/types/Category'
-import IIngredient from '@/types/Ingredient'
+import { Category } from '@/types/Category'
+import { Ingredient } from '@/types/Ingredient'
 import { createContext } from 'react'
 import { useEffect, useState } from 'react'
 import recipesApi from '../api'
 
 interface IRecipeDataContextState {
-   categories: ICategory[]
+   categories: Category[]
    areas: any[]
-   ingredients: IIngredient[]
+   ingredients: Ingredient[]
    lookupCategory: (label: string) => void
    lookupIngredient: (ingredient: string) => void
 }
@@ -33,7 +33,7 @@ export const RecipeDataProvider = ({ children }: RecipeDataProviderProps) => {
       if (!categories) {
          console.warn('No categories loaded')
       }
-      const category = categories.filter((c: ICategory) => c.label === label)[0]
+      const category = categories.filter((c: Category) => c.label === label)[0]
       return category
    }
 
@@ -42,7 +42,7 @@ export const RecipeDataProvider = ({ children }: RecipeDataProviderProps) => {
          console.warn('No ingredients loaded')
       }
       const ingredient = ingredients.filter(
-         (i: IIngredient) => i.name.toLowerCase() === name.toLowerCase()
+         (i: Ingredient) => i.name.toLowerCase() === name.toLowerCase()
       )[0]
       return ingredient
    }

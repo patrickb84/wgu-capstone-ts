@@ -1,8 +1,7 @@
-import RecipeIngredient from 'Types/RecipeIngredient'
-// import ITag from 'Types/Tag'
+import { RecipeIngredient } from '@recipe-data/types/RecipeAdapter'
 
-export default interface IRecipe {
-   id: number | string | undefined
+export interface Recipe {
+   id: string
    name: string
    ingredients: RecipeIngredient[]
    area?: string

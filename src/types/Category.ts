@@ -1,4 +1,4 @@
-export default interface ICategory {
+export interface Category {
    id: number
    label: string
    description?: string
